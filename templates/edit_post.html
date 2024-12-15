@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование поста</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script>
+        async function sendRequest(method, url) {
+            const response = await fetch(url, { method: method });
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Request failed: ' + response.statusText);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Редактирование поста</h1>
+    <form action="/posts/{{ post.id }}/edit" method="post">
+        <label>Создержание: <textarea name="content" required>{{ post.content }}</textarea></label><br>
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>
