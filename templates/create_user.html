@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создать пользователя</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script>
+        function checkFields() {
+            const usernameInput = document.querySelector("input[name='username']");
+            const emailInput = document.querySelector("input[name='email']");
+            const submitButton = document.querySelector("button[type='submit']");
+            const errorDisplay = document.getElementById("error-display");
+
+            usernameInput.addEventListener("input", () => errorDisplay.style.display = "none");
+            emailInput.addEventListener("input", () => errorDisplay.style.display = "none");
+        }
+
+        window.onload = checkFields;
+    </script>
+</head>
+<body>
+    <h1>Создать пользователя</h1>
+    <form action="/users/new" method="post" onsubmit="return validateForm()">
+        <label>Никнейм: <input type="text" name="username" required></label><br>
+        <label>Email: <input type="email" name="email" required></label><br>
+        <label>Пароль: <input type="password" name="password" required></label><br>
+        <div id="error-display" style="color: red; display: none;">Error: Пользователь с таким никнеймом или email уже существует.</div>
+        <button type="submit">Создать</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создать пост</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <h1>Создать пост</h1>
+    <form action="/posts/new" method="post">
+        <label>Название: <input type="text" name="title" required></label><br>
+        <label>Создержание: <textarea name="content" required></textarea></label><br>
+        <label>User ID: <input type="number" name="user_id" required></label><br>
+        <button type="submit">Создать</button>
+    </form>
+</body>
+</html>

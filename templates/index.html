@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script>
+        async function sendRequest(method, url) {
+            const response = await fetch(url, { method: method });
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Request failed: ' + response.statusText);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Пользователи</h1>
+    <a href="/users/new">Создать пользователя</a>
+    <ul>
+        {% for user in users %}
+        <li>
+            {{ user.username }} ({{ user.email }})
+            <div>
+                <a href="/users/{{ user.id }}/edit">Отредактировать</a>
+                <button onclick="sendRequest('DELETE', '/users/{{ user.id }}')">Удалить</button>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h1>Посты</h1>
+    <a href="/posts/new">Создать пост</a>
+    <ul>
+        {% for post, user in posts %}
+        <li>
+            <strong>{{ post.title }}</strong> от {{ user.username }}
+            <p>{{ post.content }}</p>
+            <div>
+            <a href="/posts/{{ post.id }}/edit">Отредактировать</a>
+            <button onclick="sendRequest('DELETE', '/posts/{{ post.id }}')">Удалить</button>
+        </div>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
